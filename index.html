@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luis Alvarez - Ingeniero en Sistemas Computacionales</title>
+    <!-- Iconos profesionales -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"/>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background-color: #030712;
+            color: #94a3b8;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        /* Header / Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #1e293b;
+            z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .logo-img {
+            height: 24px;
+            width: auto;
+        }
+        .logo span { color: #00a8ff; }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .nav-menu a { color: #cbd5e1; }
+        .nav-menu a:hover { color: #00a8ff; }
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
+        .nav-right a:hover { color: #00a8ff; }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+        }
+        .hero-left { flex: 1.2; }
+        .hero-tag {
+            color: #00a8ff;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        .hero-title span { color: #00a8ff; }
+        .hero-subtitle {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+        .hero-subtitle span { color: #00a8ff; }
+        .hero-text {
+            font-size: 1.05rem;
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            max-width: 540px;
+        }
+        .hero-text-accent {
+            color: #00a8ff;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            max-width: 540px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        .btn {
+            padding: 0.75rem 1.75rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: #00a8ff;
+            color: #ffffff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0096e6;
+            box-shadow: 0 0 20px rgba(0, 168, 255, 0.4);
+        }
+        .btn-secondary {
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid #334155;
+        }
+        .btn-secondary:hover {
+            border-color: #00a8ff;
+            background: rgba(0, 168, 255, 0.05);
+        }
+        .hero-socials {
+            display: flex;
+            gap: 1.5rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .hero-socials a { display: flex; align-items: center; gap: 0.4rem; }
+        .hero-socials a:hover { color: #ffffff; }
+        
+        .hero-right {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .profile-wrapper {
+            position: relative;
+            width: 360px;
+            height: 450px;
+        }
+        .profile-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid rgba(0, 168, 255, 0.25);
+            border-radius: 24px;
+            z-index: 1;
+            pointer-events: none;
+            box-shadow: 0 0 30px rgba(0, 168, 255, 0.1);
+        }
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: cover;
+            object-position: center 15%;
+            position: relative;
+            z-index: 2;
+            border: 1px solid #1e293b;
+            background-color: #0f172a;
+        }
+
+        /* Secciones */
+        section {
+            padding: 6rem 2rem;
+        }
+        .section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-size: 2rem;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .section-title span { color: #00a8ff; }
+        .section-subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 4rem;
+            font-size: 1rem;
+        }
+
+        /* Línea de tiempo */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: 2rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 24px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #1e293b;
+            z-index: 1;
+        }
+        .timeline-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding: 0 1rem;
+        }
+        .timeline-icon {
+            width: 50px;
+            height: 50px;
+            background: #030712;
+            border: 2px solid #1e293b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            color: #00a8ff;
+            font-size: 1.25rem;
+        }
+        .timeline-item:hover .timeline-icon {
+            border-color: #00a8ff;
+            box-shadow: 0 0 15px rgba(0, 168, 255, 0.4);
+        }
+        .timeline-age {
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.25rem;
+        }
+        .timeline-desc { font-size: 0.85rem; color: #64748b; }
+
+        /* Habilidades */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        .skills-card {
+            background: #0b1329;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+        }
+        .skills-card:hover { border-color: #00a8ff; }
+        .skills-card-title {
+            font-size: 1.1rem;
+            color: #ffffff;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .skills-card-title i { color: #00a8ff; }
+        .skills-list { list-style: none; }
+        .skills-list li {
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .skills-list li::before {
+            content: '•';
+            color: #00a8ff;
+            font-weight: bold;
+        }
+
+        /* Filosofía */
+        .filosofia {
+            background: linear-gradient(180deg, #030712 0%, #0b1329 100%);
+            text-align: center;
+            position: relative;
+        }
+        .quote-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        .quote-icon {
+            font-size: 2.5rem;
+            color: rgba(0, 168, 255, 0.2);
+            margin-bottom: 1rem;
+        }
+        .quote-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+        .quote-text span { color: #00a8ff; }
+        .quote-sub { color: #64748b; font-size: 1rem; }
+
+        /* Contacto */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        .contact-card {
+            background: #0b1329;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .contact-card:hover { border-color: #00a8ff; background: rgba(0, 168, 255, 0.02); }
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0, 168, 255, 0.1);
+            color: #00a8ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .contact-info-title { font-size: 0.8rem; color: #64748b; }
+        .contact-info-value { font-size: 0.95rem; color: #ffffff; font-weight: 600; }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #1e293b;
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #64748b;
+            background: #030712;
+        }
+        footer .footer-logo {
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        footer .footer-logo span { color: #00a8ff; }
+
+        /* Responsivo */
+        @media (max-width: 960px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 7rem;
+                gap: 3rem;
+            }
+            .hero-subtitle { justify-content: center; }
+            .hero-text, .hero-text-accent { margin-left: auto; margin-right: auto; }
+            .hero-buttons { justify-content: center; }
+            .hero-socials { justify-content: center; }
+            .nav-menu { display: none; }
+            .profile-wrapper { width: 280px; height: 350px; }
+            .timeline { flex-direction: column; gap: 2rem; }
+            .timeline::before { display: none; }
+            .timeline-item { display: flex; align-items: center; text-align: left; padding: 0; }
+            .timeline-icon { margin: 0 1.25rem 0 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <img src="image_db1bfd.png" alt="SAI Logo" class="logo-img">
+                Luis <span>Alvarez</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#historia">Mi Historia</a></li>
+                <li><a href="#aprendizaje">Aprendizaje</a></li>
+                <li><a href="#filosofia">Filosofía</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="nav-right">
+                <a href="https://github.com/lalvarez-sai" target="_blank"><i class="ti ti-brand-github"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="ti ti-brand-linkedin"></i></a>
+                <a href="#"><i class="ti ti-sun"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio">
+        <div class="hero">
+            <div class="hero-left">
+                <div class="hero-tag">Ingeniero en Sistemas Computacionales</div>
+                <h1 class="hero-title">Luis <span>Alvarez</span></h1>
+                <div class="hero-subtitle">Infraestructura <span>•</span> Cloud <span>•</span> Automatización <span>•</span> Liderazgo</div>
+                <p class="hero-text">
+                    Empecé en TI a los 17 años. Desde entonces he dedicado más de la mitad de mi vida a entender cómo funcionan los sistemas, las redes, la automatización y la tecnología empresarial.
+                </p>
+                <p class="hero-text-accent">
+                    No me definen los lugares donde trabajé. Me define lo que aprendí, lo que construí y los problemas que fui capaz de resolver.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#historia" class="btn btn-primary"><i class="ti ti-user"></i> Mi Historia</a>
+                    <a href="#contacto" class="btn btn-secondary"><i class="ti ti-mail"></i> Hablemos</a>
+                </div>
+                <div class="hero-socials">
+                    <a href="https://wa.me/5580767394" target="_blank"><i class="ti ti-brand-whatsapp"></i> WhatsApp</a>
+                    <a href="mailto:lalvarez@micr-sai.com.mx"><i class="ti ti-mail"></i> Email</a>
+                    <a href="https://linkedin.com" target="_blank"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="profile-wrapper">
+                    <img src="image_final_perfil.jpg" alt="Luis Alvarez" class="avatar">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historia -->
+    <section id="historia" style="background-color: #060b18;">
+        <div class="section-inner">
+            <h2 class="section-title">Mi <span>Historia</span> en TI</h2>
+            <p class="section-subtitle">Más de dos décadas aprendiendo, construyendo y evolucionando con la tecnología.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="ti ti-terminal-2"></i></div>
+                    <div class="timeline-age">17 años</div>
+                    <div class="timeline-desc">Primer contacto con la tecnología</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="ti ti-server"></i></div>
+                    <div class="timeline-age">20 años</div>
+                    <div class="timeline-desc">Primer servidor, primeras redes</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="ti ti-building"></i></div>
+                    <div class="timeline-age">24 años</div>
+                    <div class="timeline-desc">Infraestructura empresarial</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="ti ti-cloud"></i></div>
+                    <div class="timeline-age">30 años</div>
+                    <div class="timeline-desc">Cloud, virtualización y automatización</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="ti ti-users"></i></div>
+                    <div class="timeline-age">35 años</div>
+                    <div class="timeline-desc">Liderazgo de equipos y proyectos</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="ti ti-shield-check"></i></div>
+                    <div class="timeline-age">38 años</div>
+                    <div class="timeline-desc">Sigo aprendiendo y resolviendo retos</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aprendizaje -->
+    <section id="aprendizaje">
+        <div class="section-inner">
+            <h2 class="section-title">Lo que he <span>Aprendido</span></h2>
+            <p class="section-subtitle">Conocimientos técnicos y habilidades clave desarrolladas.</p>
+            
+            <div class="skills-grid">
+                <div class="skills-card">
+                    <div class="skills-card-title"><i class="ti ti-device-desktop"></i> Sistemas</div>
+                    <ul class="skills-list">
+                        <li>Windows Server</li>
+                        <li>Linux</li>
+                        <li>Virtualización</li>
+                        <li>Active Directory</li>
+                        <li>Backup & Recovery</li>
+                    </ul>
+                </div>
+                <div class="skills-card">
+                    <div class="skills-card-title"><i class="ti ti-shield-lock"></i> Redes & Seguridad</div>
+                    <ul class="skills-list">
+                        <li>TCP/IP</li>
+                        <li>Firewalls (Fortinet)</li>
+                        <li>VPN</li>
+                        <li>Switching</li>
+                        <li>Seguridad Perimetral</li>
+                    </ul>
+                </div>
+                <div class="skills-card">
+                    <div class="skills-card-title"><i class="ti ti-cloud-computing"></i> Cloud & SaaS</div>
+                    <ul class="skills-list">
+                        <li>Microsoft 365</li>
+                        <li>Azure AD</li>
+                        <li>Google Workspace</li>
+                        <li>Google Cloud</li>
+                        <li>Zoho / cPanel</li>
+                    </ul>
+                </div>
+                <div class="skills-card">
+                    <div class="skills-card-title"><i class="ti ti-code"></i> Automatización</div>
+                    <ul class="skills-list">
+                        <li>PowerShell</li>
+                        <li>Bash Scripting</li>
+                        <li>Python</li>
+                        <li>Apps Script</li>
+                        <li>APIs / Integraciones</li>
+                    </ul>
+                </div>
+                <div class="skills-card">
+                    <div class="skills-card-title"><i class="ti ti-hierarchy-2"></i> Liderazgo</div>
+                    <ul class="skills-list">
+                        <li>Gestión de Equipos</li>
+                        <li>Documentación</li>
+                        <li>Mejora de Procesos</li>
+                        <li>ITIL (Fundamentos)</li>
+                        <li>Comunicación</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filosofía -->
+    <section id="filosofia" class="filosofia">
+        <div class="section-inner quote-container">
+            <div class="quote-icon"><i class="ti ti-quote"></i></div>
+            <p class="quote-text">
+                "La tecnología cambia, las herramientas evolucionan, <br>pero la capacidad de aprender <span>nunca pasa de moda</span>."
+            </p>
+            <p class="quote-sub">
+                Creo en construir soluciones simples, documentadas y escalables que ayuden a las personas a trabajar mejor y a las empresas a crecer.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" style="background-color: #060b18;">
+        <div class="section-inner">
+            <h2 class="section-title"><span>Conectemos</span></h2>
+            <p class="section-subtitle">Vías de contacto directo y redes profesionales.</p>
+            
+            <div class="contact-grid">
+                <a href="https://wa.me/5580767394" target="_blank" class="contact-card">
+                    <div class="contact-icon"><i class="ti ti-brand-whatsapp"></i></div>
+                    <div>
+                        <div class="contact-info-title">WhatsApp</div>
+                        <div class="contact-info-value">55 8076 7394</div>
+                    </div>
+                </a>
+                <a href="mailto:lalvarez@micr-sai.com.mx" class="contact-card">
+                    <div class="contact-icon"><i class="ti ti-mail"></i></div>
+                    <div>
+                        <div class="contact-info-title">Email</div>
+                        <div class="contact-info-value">lalvarez@micr-sai.com.mx</div>
+                    </div>
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="contact-card">
+                    <div class="contact-icon"><i class="ti ti-brand-linkedin"></i></div>
+                    <div>
+                        <div class="contact-info-title">LinkedIn</div>
+                        <div class="contact-info-value">/in/lalvarez</div>
+                    </div>
+                </a>
+                <a href="https://github.com/lalvarez-sai" target="_blank" class="contact-card">
+                    <div class="contact-icon"><i class="ti ti-brand-github"></i></div>
+                    <div>
+                        <div class="contact-info-title">GitHub</div>
+                        <div class="contact-info-value">Ver mis proyectos</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">
+            <img src="image_db1bfd.png" alt="SAI" style="height:16px; vertical-align:middle; margin-right:6px;"> 
+            Luis <span>Alvarez</span>
+        </div>
+        <p>© 2026 Luis Alvarez • Ingeniero en Sistemas Computacionales</p>
+    </footer>
+
+</body>
+</html>
